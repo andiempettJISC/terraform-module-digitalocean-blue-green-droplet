@@ -8,10 +8,6 @@ locals {
 
 }
 
-module "common-metadata" {
-  source = "../common-metadata"
-}
-
 data "digitalocean_ssh_keys" "keys" {}
 
 data "digitalocean_images" "latest_image" {
