@@ -95,6 +95,10 @@ data "http" "health_blue" {
 
   url = "${var.healthcheck_protocol}://${digitalocean_droplet.blue[0].ipv4_address}${var.healthcheck_path}"
 
+  retry {
+    attempts = 5
+  }
+
   depends_on = [
     time_sleep.blue_wait
   ]
@@ -107,6 +111,10 @@ data "http" "health_green" {
   count = var.enable_healthcheck && var.color == "green" ? 1 : 0
 
   url = "${var.healthcheck_protocol}://${digitalocean_droplet.green[0].ipv4_address}${var.healthcheck_path}"
+
+  retry {
+    attempts = 5
+  }
 
   depends_on = [
     time_sleep.green_wait
